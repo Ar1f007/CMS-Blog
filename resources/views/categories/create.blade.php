@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-center text-xl text-gray-800 leading-tight">
-            {{ __('Create Category') }}
+            {{ isset($category) ? __('Edit Category') : __('Create Category') }}
         </h2>
     </x-slot>
 
@@ -12,21 +12,28 @@
 
                 <div class="p-6 bg-white border-b border-gray-200">
 
-                    <form method="POST" action="{{ route('categories.store')}}">
+                    <form method="POST"
+                        action="{{ isset($category) ?  route('categories.update', $category->id) :  route('categories.store')}}">
                         @csrf
+
+                        @if (isset($category))
+
+                        @method('PUT')
+
+                        @endif
 
                         <!-- category name -->
                         <div>
                             <x-label for="name" :value="__('NAME')" />
 
-                            <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
-                                required autofocus />
+                            <x-input id="name" class="block mt-1 w-full" type="text" name="name"
+                                value="{{ isset($category) ? $category->name : ''}}" required />
                         </div>
 
                         {{-- add button  --}}
                         <div class="flex items-cente justify-start  mt-4">
                             <x-button>
-                                {{ __('Add Category') }}
+                                {{ isset($category) ? __('Update') : __('Add Category') }}
                             </x-button>
                         </div>
                     </form>
