@@ -49,8 +49,8 @@
 
 <script>
     function handleDelete(id){
-var form = document.getElementById('deleteCategoryForm')
-form.action = '/categories/' + id
-$('#deleteModal').modal('show')
+    var form = document.getElementById('deleteCategoryForm')
+    form.action = '/categories/' + id
+    $('#deleteModal').modal('show')
 }
 </script>

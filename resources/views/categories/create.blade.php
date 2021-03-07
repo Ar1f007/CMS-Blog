@@ -32,9 +32,10 @@
 
                         {{-- add button  --}}
                         <div class="flex items-cente justify-start  mt-4">
-                            <x-button>
+                            <button
+                                class="bg-transparent text-gray-500 font-semibold  py-2 px-4 hover:bg-gray-50 border border-b border-gray-200 hover:border-white-500 rounded shadow-sm sm:rounded-lg focus:outline-none">
                                 {{ isset($category) ? __('Update') : __('Add Category') }}
-                            </x-button>
+                            </button>
                         </div>
                     </form>
                 </div>
