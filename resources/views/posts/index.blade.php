@@ -12,7 +12,7 @@
             {{-- add post button  --}}
             <div class="flex justify-end">
                 <button>
-                    <a class="bg-transparent text-gray-500 font-semibold hover:text-gray-700 py-2 px-4 border border-b border-gray-200 hover:border-transparent rounded shadow-sm sm:rounded-lg"
+                    <a class="bg-transparent text-gray-500 font-semibold hover:text-gray-700 py-2 px-4 border border-b border-gray-200 hover:border-gray rounded shadow-sm sm:rounded-lg"
                         href=" {{ route('posts.create')}}">
                         Add Posts
                     </a>
