@@ -11,9 +11,9 @@
 
             {{-- add category button  --}}
             <div class="flex justify-end">
-                <button
-                    class="bg-transparent hover:bg-gray-600 text-gray-500 font-semibold hover:text-white py-2 px-4 border bg-white border-b border-gray-200 bg-gray-50 hover:border-transparent rounded shadow-sm sm:rounded-lg">
-                    <a href="{{ route('categories.create')}}">
+                <button>
+                    <a class="bg-transparent text-gray-500 font-semibold hover:text-gray-700 py-2 px-4 border border-b border-gray-200 hover:border-transparent rounded shadow-sm sm:rounded-lg"
+                        href=" {{ route('categories.create')}}">
                         Add Category
                     </a>
                 </button>
@@ -36,6 +36,9 @@
                                                 <th scope="col" class="relative px-6 py-3">
                                                     <span class="sr-only">Edit</span>
                                                 </th>
+                                                <th scope="col" class="relative px-6 py-3">
+                                                    <span class="sr-only">Delete</span>
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white divide-y divide-gray-200">
@@ -47,11 +50,17 @@
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                     <a href="{{ route('categories.edit', $category->id) }}"
                                                         class="text-indigo-600 hover:text-indigo-900">Edit</a>
+
+                                                    <button class="text-red-600 hover:text-red-900 ml-3"
+                                                        onclick="handleDelete({{ $category->id }})">
+                                                        Delete
+                                                    </button>
                                                 </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
+                                    @include('categories.delete-modal')
                                 </div>
                                 <div class="mt-4">
                                     {{ $categories->links() }}
@@ -63,7 +72,6 @@
             </div>
         </div>
     </div>
-
 
 </x-app-layout>
 {{-- <a
