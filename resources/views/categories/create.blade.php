@@ -24,7 +24,7 @@
 
                         <!-- category name -->
                         <div>
-                            <x-label for="name" :value="__('NAME')" />
+                            <x-label for="name" :value="__('Name')" />
 
                             <x-input id="name" class="block mt-1 w-full" type="text" name="name"
                                 value="{{ isset($category) ? $category->name : ''}}" required />
