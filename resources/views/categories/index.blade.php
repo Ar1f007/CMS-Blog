@@ -21,6 +21,7 @@
 
             {{-- category table  --}}
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-3">
+                @if($categories->count() > 0)
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -69,7 +70,13 @@
                         </div>
                     </div>
                 </div>
+                @else
+                <div class="p-6 bg-white border-b border-gray-200 text-center">
+                    No Categories Yet!
+                </div>
+                @endif
             </div>
+
         </div>
     </div>
 

@@ -20,6 +20,7 @@ Route::get('/', function () {
 });
 Route::resource('categories', CategoriesController::class);
 Route::resource('posts', PostsController::class);
+Route::get('trashed-posts', [PostsController::class, 'trashed'])->name('trashed-posts.index');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
