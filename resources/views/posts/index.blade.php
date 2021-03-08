@@ -61,7 +61,7 @@
                                                     {{ $post->title }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <a href="{{ route('categories.edit', $post->id) }}"
+                                                    <a href="{{ route('posts.edit', $post->id) }}"
                                                         class="text-indigo-600 hover:text-indigo-900">
 
                                                         {{ $post->trashed() ? 'Restore' : 'Edit' }}
