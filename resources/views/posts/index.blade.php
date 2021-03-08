@@ -61,12 +61,22 @@
                                                     {{ $post->title }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                    @if (!$post->trashed())
                                                     <a href="{{ route('posts.edit', $post->id) }}"
                                                         class="text-indigo-600 hover:text-indigo-900">
-
-                                                        {{ $post->trashed() ? 'Restore' : 'Edit' }}
-
+                                                        Edit
                                                     </a>
+                                                    @else
+                                                    <form action="{{route('restore-posts', $post->id)}}" method="post">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <button type="submit"
+                                                            class="text-indigo-600 hover:text-indigo-900">
+                                                            Restore
+                                                        </button>
+                                                    </form>
+                                                    @endif
+
                                                 </td>
                                                 <td>
                                                     <form action="{{route('posts.destroy', $post->id)}}" method="post">
