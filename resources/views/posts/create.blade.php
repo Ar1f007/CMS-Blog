@@ -23,7 +23,7 @@
             {{-- resource for creating post  --}}
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-3">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <form method="POST" action="{{ route('posts.store') }}">
+                    <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div>
                             <x-label for="title" :value="__('Title')" />
