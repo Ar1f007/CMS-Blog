@@ -28,24 +28,51 @@
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                     <table class="min-w-full divide-y divide-gray-200">
                                         <thead class="bg-gray-50">
-                                            {{-- <tr>
+                                            <tr>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Name
+                                                    Image
+                                                </th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Title
                                                 </th>
                                                 <th scope="col" class="relative px-6 py-3">
                                                     <span class="sr-only">Edit</span>
                                                 </th>
-                                            </tr> --}}
+                                                <th scope="col" class="relative px-6 py-3">
+                                                    <Trash class="sr-only">Trash</span>
+                                                </th>
+                                            </tr>
                                         </thead>
                                         <tbody class="bg-white divide-y divide-gray-200">
-                                            {{-- @foreach ($categories as $category)
+                                            @foreach ($posts as $post)
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    {{ $category->name }}
-                                            </td>
+                                                    <img src="{{ asset('storage/' . $post->image) }}" width="80px"
+                                                        alt="Image of the Post">
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    {{ $post->title }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                    <a href="{{ route('categories.edit', $post->id) }}"
+                                                        class="text-indigo-600 hover:text-indigo-900">Edit</a>
+
+
+                                                </td>
+                                                <td>
+                                                    <form action="{{route('posts.destroy', $post->id)}}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="text-red-600 hover:text-red-900 ml-3">
+                                                            Trash
+                                                        </button>
+                                                    </form>
+                                                </td>
                                             </tr>
-                                            @endforeach --}}
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

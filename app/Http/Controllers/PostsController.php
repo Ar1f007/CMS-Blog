@@ -15,7 +15,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
+        return view('posts.index')->with('posts', Post::all());
     }
 
     /**
@@ -45,7 +45,7 @@ class PostsController extends Controller
             'published_at' => $request->published_at
         ]);
 
-            session()->flash('message', 'Post created sucessfully.');
+            session()->flash('message', 'Post created successfully.');
 
             return redirect(route('posts.index'));
     }
@@ -90,8 +90,12 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        session()->flash('message', 'Post trashed successfully. If you want to restore it, go to the "Trashed" category.');
+
+        return redirect(route('posts.index'));
     }
 }
