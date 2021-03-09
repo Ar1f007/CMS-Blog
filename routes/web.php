@@ -18,14 +18,16 @@ use App\Http\Controllers\PostsController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::middleware(['auth'])->group(function () {
+Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 Route::resource('categories', CategoriesController::class);
 Route::resource('posts', PostsController::class);
 Route::get('trashed-posts', [PostsController::class, 'trashed'])->name('trashed-posts.index');
 Route::put('restore-post/{post}', [PostsController::class, 'restore'])->name('restore-posts');
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
+});
 
 
 require __DIR__.'/auth.php';
