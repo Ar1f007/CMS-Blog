@@ -9,6 +9,7 @@
                     clip-rule="evenodd"></path>
             </svg>
         </span>
+
     </div>
     <div class="alert-content ml-4">
         <div class="alert-title font-semibold text-lg text-red-800">
@@ -20,5 +21,6 @@
             @endforeach
         </div>
     </div>
+
 </div>
 @endif

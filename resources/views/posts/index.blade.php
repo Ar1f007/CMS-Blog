@@ -60,7 +60,8 @@
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                     {{ $post->title }}
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                <td class=" px-6 py-4 whitespace-nowrap text-right text-sm
+                                                        font-medium">
                                                     @if (!$post->trashed())
                                                     <a href="{{ route('posts.edit', $post->id) }}"
                                                         class="text-indigo-600 hover:text-indigo-900">

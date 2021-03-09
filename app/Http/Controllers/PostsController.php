@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Posts\CreatePostRequest;
 use App\Http\Requests\Posts\UpdatePostRequest;
 use App\Models\Post;
+use App\Models\Category;
 
 
 class PostsController extends Controller
@@ -27,7 +28,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('posts.create')->with('categories', Category::all());
     }
 
     /**
@@ -44,6 +45,7 @@ class PostsController extends Controller
             'title' => $request->title,
             'content' => $request->content,
             'image' => $imagePath,
+            'category_id' => $request->category,
             'published_at' => $request->published_at
         ]);
 
@@ -71,7 +73,7 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.create')->with('post', $post);
+        return view('posts.create')->with('post', $post)->with('categories', Category::all());
     }
 
     /**
@@ -84,7 +86,7 @@ class PostsController extends Controller
     public function update(UpdatePostRequest $request, Post $post)
     {
         //get the attributes 
-        $data = $request->only(['title', 'content', 'published_at']);
+        $data = $request->only(['title', 'content', 'published_at', 'category']);
 
         //check if there is a new image 
         if($request->hasFile('image')){
@@ -120,7 +122,7 @@ class PostsController extends Controller
             $post->forceDelete();
             session()->flash('message', 'Post deleted permanently');
 
-            return redirect()->back();
+            return back();
         }
         else{
             $post->delete();
@@ -149,6 +151,6 @@ class PostsController extends Controller
         $post->restore();
         session()->flash('message', 'Post restored successfully.');
 
-        return redirect()->back();
+        return back();
     }
 }

@@ -34,6 +34,10 @@
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Name
                                                 </th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Total Posts
+                                                </th>
                                                 <th scope="col" class="relative px-6 py-3">
                                                     <span class="sr-only">Edit</span>
                                                 </th>
@@ -47,6 +51,9 @@
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                     {{ $category->name }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    {{ $category->posts->count() }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                     <a href="{{ route('categories.edit', $category->id) }}"

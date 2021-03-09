@@ -14,7 +14,7 @@ class Post extends Model
     
     protected $dates = ['published_at'];
 
-    protected $fillable = ['title', 'content', 'image', 'published_at'];
+    protected $fillable = ['title', 'content', 'image', 'published_at', 'category_id'];
     
     /**
     * delete image from the storage
@@ -23,6 +23,15 @@ class Post extends Model
 
     public function deleteImage(){
         Storage::delete($this->image);
+    }
+
+    /**
+     * relationship between category and post
+     * A post has one category
+     * A category has many posts
+     */
+    public function category(){ // this category is the name of model called Category
+      return  $this->belongsTo(Category::class);
     }
 
 }

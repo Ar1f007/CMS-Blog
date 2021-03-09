@@ -33,13 +33,13 @@
                         <div>
                             <x-label for="title" :value="__('Title')" />
                             <x-input type="text" name="title" id="title" class="block mt-1 w-full"
-                                value="{{ isset($post) ? $post->title : ''}}" />
+                                value="{{ isset($post) ? $post->title : old('title')}}" />
                         </div>
                         <div class="mt-5">
                             <x-label for="content" :value="__('Content')" />
                             <!--/*// TinyMCE */  -->
                             <textarea class="content w-full border rounded" name="content"
-                                id="content">{{ isset($post)? $post->content : '' }}</textarea>
+                                id="content">{{ isset($post)? $post->content : old('content') }}</textarea>
                         </div>
 
                         <div class="mt-5">
@@ -49,13 +49,28 @@
                             @endif
 
                             <x-label for="image" :value="__('Image')" />
-                            <x-input type="file" name="image" id="image" class="cursor-pointer block mt-1 w-full"
-                                value="" />
+                            <x-input type="file" name="image" id="image" class="cursor-pointer block mt-1 w-full" />
+                        </div>
+                        <div class="mt-5">
+                            <x-label for="category" :value="__('Choose Category')" />
+
+                            <select class="block mt-1 w-full" name="category" id="category">
+                                @foreach ($categories as $category)
+                                <option value="{{$category->id}}" @if (isset($post)) @if ($category->id ==
+                                    $post->category_id)
+                                    selected
+                                    @endif
+                                    @endif>
+                                    {{$category->name}}
+                                </option>
+                                @endforeach
+                            </select>
+
                         </div>
                         <div class="mt-5">
                             <x-label for="published_at" :value="__('Published At')" />
                             <x-input type="text" name="published_at" id="published_at" class="mt-1 w-full"
-                                value="{{ isset($post)? $post->published_at : '' }}" />
+                                value="{{ isset($post)? $post->published_at : old('published_at') }}" />
                         </div>
 
                         {{-- add button  --}}
