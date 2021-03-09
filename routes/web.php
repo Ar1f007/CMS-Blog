@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\TagsController;
 use App\Http\Controllers\PostsController;
 
 /*
@@ -24,6 +25,7 @@ Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
 Route::resource('categories', CategoriesController::class);
+Route::resource('tags', TagsController::class);
 Route::resource('posts', PostsController::class);
 Route::get('trashed-posts', [PostsController::class, 'trashed'])->name('trashed-posts.index');
 Route::put('restore-post/{post}', [PostsController::class, 'restore'])->name('restore-posts');
