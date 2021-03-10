@@ -53,7 +53,7 @@
                                                     {{ $tag->name }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    {{-- {{ $tag->posts->count() }} --}}
+                                                    {{ $tag->posts->count() }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                     <a href="{{ route('tags.edit', $tag->id) }}"
@@ -79,7 +79,7 @@
                 </div>
                 @else
                 <div class="p-6 bg-white border-b border-gray-200 text-center">
-                    No tags Yet!
+                    No Tags Yet!
                 </div>
                 @endif
             </div>

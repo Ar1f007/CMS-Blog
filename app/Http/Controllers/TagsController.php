@@ -18,6 +18,7 @@ class tagsController extends Controller
     {
         $tags = Tag::paginate();
         return view('tags.index', compact('tags'));
+        
         // return view('tags.index')->with('tags', Tag::all());
     }
 

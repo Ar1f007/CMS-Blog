@@ -7,6 +7,7 @@ use App\Http\Requests\Posts\CreatePostRequest;
 use App\Http\Requests\Posts\UpdatePostRequest;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Tag;
 
 
 class PostsController extends Controller
@@ -34,7 +35,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create')->with('categories', Category::all());
+        return view('posts.create')->with('categories', Category::all())->with('tags', Tag::all());
     }
 
     /**
@@ -47,17 +48,28 @@ class PostsController extends Controller
     {
         $imagePath = $request->image->store('posts');
 
-        Post::create([
+        $post = Post::create([
+
             'title' => $request->title,
             'content' => $request->content,
             'image' => $imagePath,
             'category_id' => $request->category,
             'published_at' => $request->published_at
+
         ]);
 
-            session()->flash('message', 'Post created successfully.');
+        // if there is any tag or number of tags attached
+        // associate this tag or this collection of tags to the post 
+        
+        if($request->tags){
 
-            return redirect(route('posts.index'));
+            $post->tags()->attach($request->tags);
+
+        }
+
+        session()->flash('message', 'Post created successfully.');
+
+        return redirect(route('posts.index'));
     }
 
     /**
@@ -79,7 +91,7 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.create')->with('post', $post)->with('categories', Category::all());
+        return view('posts.create')->with('post', $post)->with('categories', Category::all())->with('tags', Tag::all());
     }
 
     /**
@@ -91,6 +103,7 @@ class PostsController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
+
         //get the attributes 
         $data = $request->only(['title', 'content', 'published_at', 'category']);
 
@@ -104,6 +117,16 @@ class PostsController extends Controller
             $post->deleteImage();
 
             $data['image'] = $imagePath;
+
+        }
+
+        if($request->tags){
+
+            // if there is new tag added or previous tag got removed
+            // helper function sync is gonna attach/detach the tags to the post
+
+            $post->tags()->sync($request->tags);
+
         }
 
         $post->update($data); 

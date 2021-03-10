@@ -67,6 +67,25 @@
                             </select>
 
                         </div>
+
+                        @if ($tags->count() > 0) <div class="mt-5">
+                            <x-label for="tags" :value="__('Tags')" />
+                            <select class="block mt-1 w-full" name="tags[]" id="tags" multiple>
+                                @foreach ($tags as $tag)
+
+                                {{-- hasTag() method function is defined in Post model --}}
+                                <option value=" {{ $tag->id }} " @if(isset($post)) @if ($post->hasTag($tag->id))
+                                    selected
+                                    @endif
+                                    @endif
+                                    >
+                                    {{ $tag->name }}
+                                </option>
+                                @endforeach
+
+                            </select>
+                        </div>
+                        @endif
                         <div class="mt-5">
                             <x-label for="published_at" :value="__('Published At')" />
                             <x-input type="text" name="published_at" id="published_at" class="mt-1 w-full"
