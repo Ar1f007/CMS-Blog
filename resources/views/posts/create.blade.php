@@ -1,12 +1,22 @@
 @section('js-bootstrap')
+
+{{-- jquery --}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+{{-- select2 --}}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 {{-- TinyMCE  --}}
 <script src="https://cdn.tiny.cloud/1/oxzyyytfotncnb59039af65x34vf4mh4o5f21caijx6w1kh9/tinymce/5/tinymce.min.js"
     referrerpolicy="origin"></script>
 
 {{-- flatpickr --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+{{-- select2  --}}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 @endsection
 
 <x-app-layout>
@@ -70,10 +80,10 @@
 
                         @if ($tags->count() > 0) <div class="mt-5">
                             <x-label for="tags" :value="__('Tags')" />
-                            <select class="block mt-1 w-full" name="tags[]" id="tags" multiple>
+                            <select class="block mt-1 w-full tags-selector" name="tags[]" id="tags" multiple>
                                 @foreach ($tags as $tag)
 
-                                {{-- hasTag() method function is defined in Post model --}}
+                                {{-- hasTag method is defined in Post model --}}
                                 <option value=" {{ $tag->id }} " @if(isset($post)) @if ($post->hasTag($tag->id))
                                     selected
                                     @endif
