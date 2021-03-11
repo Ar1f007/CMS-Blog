@@ -7,6 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <x-success-message />
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                 <div class="p-6 bg-white border-b border-gray-200">
@@ -17,6 +18,9 @@
                                     <table class="min-w-full divide-y divide-gray-200">
                                         <thead class="bg-gray-50">
                                             <tr>
+                                                <th scope="col" class="relative px-6 py-3">
+                                                    <span class="sr-only">Image</span>
+                                                </th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Name
@@ -34,6 +38,10 @@
                                             @foreach ($users as $user)
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    <img src="{{Gravatar::src($user->email)}}" alt="user's picture"
+                                                        style="border-radius: 50%; width: 50px;">
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                     {{ $user->name }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -42,7 +50,11 @@
 
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                     @if (!$user->isAdmin())
-                                                    <x-button>Make Admin</x-button>
+                                                    <form action="{{ route('users.make-admin', $user->id) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        <x-button>Make Admin</x-button>
+                                                    </form>
                                                     @endif
                                                 </td>
 

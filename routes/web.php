@@ -36,6 +36,7 @@ Route::put('restore-post/{post}', [PostsController::class, 'restore'])->name('re
 
 Route::middleware(['auth', 'admin'])->group(function(){
     Route::get('users', [UsersController::class, 'index'])->name('users.index');
+    Route::post('users/{user}/make-admin', [UsersController::class, 'makeAdmin'])->name('users.make-admin');
 });
 
 require __DIR__.'/auth.php';
