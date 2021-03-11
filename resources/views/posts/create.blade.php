@@ -64,7 +64,7 @@
                         <div class="mt-5">
                             <x-label for="category" :value="__('Choose Category')" />
 
-                            <select class="block mt-1 w-full" name="category" id="category">
+                            <select class="block mt-1 w-full" name="category_id" id="category">
                                 @foreach ($categories as $category)
                                 <option value="{{$category->id}}" @if (isset($post)) @if ($category->id ==
                                     $post->category_id)

@@ -97,6 +97,25 @@ class CategoriesController extends Controller
      */
     public function destroy(Category $category)
     {
+        //number of posts is greater than 0
+        if($category->posts->count() > 0){
+            $totalPostCount = $category->posts->count();
+            $categoryName = $category->name;
+
+            
+            if($totalPostCount == 1){
+                return back()->with('error', 'The category "'. $categoryName. '" cannot be deleted because it has ' .$totalPostCount. ' post already !');
+
+            }
+
+            else{
+                return back()->with('error', 'The category "'. $categoryName. '" cannot be deleted because it has ' .$totalPostCount. ' posts already !');
+            }
+
+           
+
+        }
+
         $category->delete();
 
         session()->flash('message', 'Category deleted successfully.');

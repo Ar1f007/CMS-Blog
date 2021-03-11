@@ -8,7 +8,7 @@
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <x-validation-errors />
             <x-success-message />
-
+            <x-error />
             {{-- add tag button  --}}
             <div class="flex justify-end">
                 <button>

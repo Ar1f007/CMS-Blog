@@ -53,8 +53,8 @@ class PostsController extends Controller
             'title' => $request->title,
             'content' => $request->content,
             'image' => $imagePath,
-            'category_id' => $request->category,
-            'published_at' => $request->published_at
+            'published_at' => $request->published_at,
+            'category_id' => $request->category_id
 
         ]);
 
@@ -104,8 +104,8 @@ class PostsController extends Controller
     public function update(UpdatePostRequest $request, Post $post)
     {
 
-        //get the attributes 
-        $data = $request->only(['title', 'content', 'published_at', 'category']);
+         //get the attributes 
+        $data = $request->only(['title', 'content', 'published_at', 'category_id']);
 
         //check if there is a new image 
         if($request->hasFile('image')){

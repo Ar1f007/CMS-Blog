@@ -98,6 +98,22 @@ class tagsController extends Controller
      */
     public function destroy(Tag $tag)
     {
+
+        //number of posts greater than 0
+        if($tag->posts->count() > 0){
+
+            $totalPosts = $tag->posts->count();
+            $tagName = $tag->name;
+
+            if($totalPosts == 1){
+                return back()->with('error', 'The tag "'. $tagName. '" cannot be deleted because it is currently attached with ' .$totalPosts. ' post.');
+
+            }
+            else{
+                return back()->with('error', 'The tag "'. $tagName. '" cannot be deleted because it is currently attached with ' .$totalPosts. ' posts.');
+            }
+
+        }
         $tag->delete();
 
         session()->flash('message', 'Tag deleted successfully.');
