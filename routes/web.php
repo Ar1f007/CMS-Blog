@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +32,10 @@ Route::get('trashed-posts', [PostsController::class, 'trashed'])->name('trashed-
 Route::put('restore-post/{post}', [PostsController::class, 'restore'])->name('restore-posts');
 });
 
+
+
+Route::middleware(['auth', 'admin'])->group(function(){
+    Route::get('users', [UsersController::class, 'index'])->name('users.index');
+});
 
 require __DIR__.'/auth.php';
