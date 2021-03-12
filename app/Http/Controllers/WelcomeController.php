@@ -10,6 +10,6 @@ use Illuminate\Http\Request;
 class WelcomeController extends Controller
 {
     public function index(){
-        return view('welcome')->with('posts', Post::all())->with('categories', Category::all())->with('tags', Tag::all());
+        return view('welcome')->with('posts', Post::simplePaginate(2))->with('categories', Category::all())->with('tags', Tag::all());
     }
 }
