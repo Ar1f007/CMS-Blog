@@ -14,7 +14,7 @@ class Post extends Model
     
     protected $dates = ['published_at'];
 
-    protected $fillable = ['title', 'content', 'image', 'published_at', 'category_id'];
+    protected $fillable = ['title', 'user_id', 'content', 'image', 'published_at', 'category_id'];
     
     /**
     * delete image from the storage
@@ -57,6 +57,12 @@ class Post extends Model
      public function hasTag($tagId){
 
       return in_array($tagId, $this->tags->pluck('id')->toArray());
+
+     }
+
+     public function user(){
+
+        return $this->belongsTo(User::class);
 
      }
 }

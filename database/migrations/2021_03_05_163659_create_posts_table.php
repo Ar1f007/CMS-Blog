@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->text('content');
             $table->string('image');
             $table->dateTimeTz('published_at')->nullable();
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
