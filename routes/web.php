@@ -6,6 +6,7 @@ use App\Http\Controllers\TagsController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\BlogPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,7 @@ use App\Http\Controllers\WelcomeController;
 
 
 Route::get('/', [WelcomeController::class, 'index']);
+Route::get('blog/posts/{post}', [BlogPostController::class, 'displayPost'])->name('blog.show');
 
 Route::middleware(['auth'])->group(function () {
 Route::get('/dashboard', function () {
