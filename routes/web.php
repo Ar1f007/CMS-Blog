@@ -21,7 +21,7 @@ use App\Http\Controllers\BlogPostController;
 
 
 
-Route::get('/', [WelcomeController::class, 'index']);
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('blog/posts/{post}', [BlogPostController::class, 'displayPost'])->name('blog.show');
 
 Route::middleware(['auth'])->group(function () {

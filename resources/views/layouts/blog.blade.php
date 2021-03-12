@@ -26,7 +26,7 @@
         <div class="container">
 
             <div class="navbar-left">
-                <a class="navbar-brand" href="../index.html">
+                <a class="navbar-brand" href="/">
                     <img src="{{ asset('img/logo.png') }}" width="85px" height="15px" alt="logo">
                 </a>
             </div>
@@ -51,7 +51,7 @@
             <div class="row gap-y align-items-center">
 
                 <div class="col-6 col-lg-3">
-                    <a href="#"><img src="{{ asset('img/logo.png') }}" width="85px" height="15px" alt="logo"></a>
+                    <a href="/"><img src="{{ asset('img/logo.png') }}" width="85px" height="15px" alt="logo"></a>
                 </div>
 
                 <div class="col-6 col-lg-3 text-right order-lg-last">
