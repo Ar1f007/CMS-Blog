@@ -1,7 +1,7 @@
 @extends('layouts.blog')
 
 @section('title')
-Blogosphere
+Category
 @endsection
 
 @section('header')
@@ -13,8 +13,7 @@ Blogosphere
         <div class="row">
             <div class="col-md-8 mx-auto">
 
-                <h1>Welcome to Blogosphere</h1>
-                <p class="lead-2 opacity-90 mt-6">Let's read and get updated together</p>
+                <h1>{{ $category->name }}</h1>
 
             </div>
         </div>
@@ -49,9 +48,15 @@ Blogosphere
                         </div>
                         @empty
                         <div class="col-md-6">
+                            @if ($category->posts->count() == 0)
+                            <p class="lead-2 text-center mt-6">
+                                No post available in this category.
+                            </p>
+                            @else
                             <p class="lead-2 text-center mt-6">
                                 No result found for <b>{{ request()->query('search') }}</b>
                             </p>
+                            @endif
                         </div>
                         @endforelse
 

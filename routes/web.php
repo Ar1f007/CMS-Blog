@@ -20,9 +20,11 @@ use App\Http\Controllers\BlogPostController;
 */
 
 
-
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('blog/posts/{post}', [BlogPostController::class, 'displayPost'])->name('blog.show');
+Route::get('blog/categories/{category}', [BlogPostController::class, 'categoryPostIndex'])->name('blog.category');
+Route::get('blog/tags/{tag}', [BlogPostController::class, 'TagPostIndex'])->name('blog.tag');
+
 
 Route::middleware(['auth'])->group(function () {
 Route::get('/dashboard', function () {
@@ -34,7 +36,6 @@ Route::resource('posts', PostsController::class);
 Route::get('trashed-posts', [PostsController::class, 'trashed'])->name('trashed-posts.index');
 Route::put('restore-post/{post}', [PostsController::class, 'restore'])->name('restore-posts');
 });
-
 
 
 Route::middleware(['auth', 'admin'])->group(function(){

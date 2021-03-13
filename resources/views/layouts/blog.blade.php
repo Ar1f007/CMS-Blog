@@ -63,7 +63,8 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <div class="nav nav-bold nav-uppercase nav-trim justify-content-lg-center">
+                    <div class="nav nav-bold nav-uppercase nav-trim justify-content-lg-center"
+                        style="justify-content:center;">
                         <p class="small-3">Copyright 2021 | Blogosphere</p>
                     </div>
                 </div>
