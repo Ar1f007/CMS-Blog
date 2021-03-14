@@ -27,9 +27,7 @@ Route::get('blog/tags/{tag}', [BlogPostController::class, 'TagPostIndex'])->name
 
 
 Route::middleware(['auth'])->group(function () {
-Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::view('/dashboard', 'dashboard')->name('dashboard');
 Route::resource('categories', CategoriesController::class);
 Route::resource('tags', TagsController::class);
 Route::resource('posts', PostsController::class);

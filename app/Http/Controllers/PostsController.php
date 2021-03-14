@@ -8,6 +8,7 @@ use App\Http\Requests\Posts\UpdatePostRequest;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\User;
 
 
 class PostsController extends Controller
@@ -25,7 +26,14 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return view('posts.index')->with('posts', Post::all());
+        if(auth()->user()->isAdmin()){
+            return view('posts.index')->with('posts', Post::all());
+        }
+        
+        else{
+            $posts = Post::where('user_id', '=', auth()->user()->id)->get();
+            return view('posts.index')->with('posts', $posts);
+        }         
     }
 
     /**
@@ -168,12 +176,25 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function trashed(){
+    public function trashed(Post $posts){
         
-        $trashed = Post::onlyTrashed()->get();
+        if(auth()->user()->isAdmin()){
 
-        return view('posts.index')->with('posts', $trashed);
+            $trashed = Post::onlyTrashed()->get();
+            return view('posts.index')->with('posts', $trashed);
+        }
+        else{            
+            $trashed = Post::onlyTrashed()->where('user_id', '=', auth()->user()->id)->get();
+            return view('posts.index')->with('posts', $trashed);
+        }
+        
     }
+
+     /**
+     * Restore the post that is trashed
+    
+     * @return \Illuminate\Http\Response
+     */
 
     public function restore($id){
 
