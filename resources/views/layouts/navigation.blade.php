@@ -12,9 +12,6 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
                     <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
                         {{ __('Post') }}
                     </x-nav-link>
@@ -26,7 +23,7 @@
                     </x-nav-link>
                     <x-nav-link :href="route('trashed-posts.index')"
                         :active="request()->routeIs('trashed-posts.index')">
-                        {{ __('Trashed Post') }}
+                        {{ __('Trash Post') }}
                     </x-nav-link>
 
                     @if (auth()->user()->isAdmin())
@@ -90,9 +87,24 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
+                {{ __('Post') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
+                {{ __('Category') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('tags.index')" :active="request()->routeIs('tags.index')">
+                {{ __('Tag') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('trashed-posts.index')"
+                :active="request()->routeIs('trashed-posts.index')">
+                {{ __('Trash Post') }}
+            </x-responsive-nav-link>
+            @if (auth()->user()->isAdmin())
+            <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                {{ __('Users') }}
+            </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
