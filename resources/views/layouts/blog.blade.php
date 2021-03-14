@@ -14,7 +14,6 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="{{ asset('img/apple-touch-icon.png') }}">
     <link rel="icon" href="{{ asset('img/favicon.ico') }}">
 </head>
 
@@ -26,12 +25,13 @@
         <div class="container">
 
             <div class="navbar-left">
-                <a class="navbar-brand" href="/">
-                    <img src="{{ asset('img/logo.png') }}" width="85px" height="15px" alt="logo">
-                </a>
+                <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
             </div>
+            @if (Auth::check())
+            <a class="btn btn-xs btn-round btn-success" href="{{ route('dashboard') }}">Dashboard</a>
+            @else
             <a class="btn btn-xs btn-round btn-success" href="{{ route('login') }}">Login</a>
-
+            @endif
         </div>
     </nav><!-- /.navbar -->
 
