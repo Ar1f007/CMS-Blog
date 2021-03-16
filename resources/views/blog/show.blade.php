@@ -46,6 +46,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 mx-auto">
+                    <p>{{$post->published_at->toFormattedDateString()}}</p>
+                </div>
+                <div class="col-lg-10 mx-auto">
                     {!! $post->content !!}
                 </div>
             </div>
