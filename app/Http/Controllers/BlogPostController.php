@@ -9,13 +9,13 @@ use App\Models\Tag;
 
 class BlogPostController extends Controller
 {
-    public function displayPost(Post $post){
-
+    public function displayPost(Post $post)
+    {
         return view('blog.show')->with('post', $post);   
     }
 
-    public function categoryPostIndex(Category $category){
-
+    public function categoryPostIndex(Category $category)
+    {
         return view('blog.category')
         ->with('category', $category)
         ->with('posts', $category->posts()->searched()->simplePaginate(4))
@@ -23,8 +23,8 @@ class BlogPostController extends Controller
         ->with('tags', Tag::all());
     }
 
-    public function tagPostIndex(Tag $tag){
-
+    public function tagPostIndex(Tag $tag)
+    {
         return view('blog.tag')->with('tag', $tag)
         ->with('categories', Category::all())
         ->with('tags', Tag::all())        

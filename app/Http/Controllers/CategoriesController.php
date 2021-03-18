@@ -39,13 +39,11 @@ class CategoriesController extends Controller
      */
     public function store(CreateCategoryRequest $request)
     {
-
         Category::create([
             'name' => $request->name
         ]);
 
         session()->flash('message', 'Category created successfully!');
-
         return redirect(route('categories.index'));
     }
 
@@ -85,7 +83,6 @@ class CategoriesController extends Controller
         ]);
 
         session()->flash('message', 'Category updated successfully!');
-
         return redirect(route('categories.index'));
     }
 
@@ -98,28 +95,24 @@ class CategoriesController extends Controller
     public function destroy(Category $category)
     {
         //number of posts is greater than 0
-        if($category->posts->count() > 0){
+        if($category->posts->count() > 0)
+        {
             $totalPostCount = $category->posts->count();
             $categoryName = $category->name;
-
             
-            if($totalPostCount == 1){
+            if($totalPostCount == 1)
+            {
                 return back()->with('error', 'The category "'. $categoryName. '" cannot be deleted because it has ' .$totalPostCount. ' post already !');
-
             }
 
             else{
                 return back()->with('error', 'The category "'. $categoryName. '" cannot be deleted because it has ' .$totalPostCount. ' posts already !');
             }
-
-           
-
         }
 
         $category->delete();
-
+        
         session()->flash('message', 'Category deleted successfully.');
-
         return redirect(route('categories.index'));
     }
 }

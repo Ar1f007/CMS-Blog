@@ -10,11 +10,10 @@ use App\Models\Category;
 use App\Models\Tag;
 use App\Models\User;
 
-
 class PostsController extends Controller
 {
-
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('verifyCategoriesExist')->only(['create', 'store']);
     }
 
@@ -26,14 +25,14 @@ class PostsController extends Controller
      */
     public function index()
     {
-        if(auth()->user()->isAdmin()){
+        if (auth()->user()->isAdmin()) 
+        {
             return view('posts.index')->with('posts', Post::all());
-        }
-        
-        else{
+        } else 
+        {
             $posts = Post::where('user_id', '=', auth()->user()->id)->get();
             return view('posts.index')->with('posts', $posts);
-        }         
+        }
     }
 
     /**
@@ -68,12 +67,11 @@ class PostsController extends Controller
         ]);
 
         // if there is any tag or number of tags attached
-        // associate this tag or this collection of tags to the post 
+        // associate this tag or this collection of tags to the post
         
-        if($request->tags){
-
+        if ($request->tags) 
+        {
             $post->tags()->attach($request->tags);
-
         }
 
         session()->flash('message', 'Post created successfully.');
@@ -113,11 +111,12 @@ class PostsController extends Controller
     public function update(UpdatePostRequest $request, Post $post)
     {
 
-         //get the attributes 
+         //get the attributes
         $data = $request->only(['title', 'content', 'published_at', 'category_id']);
 
-        //check if there is a new image 
-        if($request->hasFile('image')){
+        //check if there is a new image
+        if ($request->hasFile('image')) 
+        {
 
             // upload it and store the path
             $imagePath = $request->image->store('posts');
@@ -126,19 +125,18 @@ class PostsController extends Controller
             $post->deleteImage();
 
             $data['image'] = $imagePath;
-
         }
 
-        if($request->tags){
+        if ($request->tags) 
+        {
 
             // if there is new tag added or previous tag got removed
             // helper function sync is gonna attach/detach the tags to the post
 
             $post->tags()->sync($request->tags);
-
         }
 
-        $post->update($data); 
+        $post->update($data);
         session()->flash('message', 'Post updated successfully.');
 
         return redirect(route('posts.index'));
@@ -154,15 +152,15 @@ class PostsController extends Controller
     {
         $post = Post::withTrashed()->where('id', $id)->firstOrFail();
 
-        if($post->trashed()){
-
+        if ($post->trashed()) 
+        {
             $post->deleteImage();
             $post->forceDelete();
             session()->flash('message', 'Post deleted permanently');
 
             return back();
-        }
-        else{
+        } else 
+        {
             $post->delete();
             session()->flash('message', 'Post trashed successfully. If you want to restore it, go to the "Trashed post" category.');
         }
@@ -172,32 +170,31 @@ class PostsController extends Controller
 
     /**
      * Display the list of all the trashed posts
-    
+
      * @return \Illuminate\Http\Response
      */
 
-    public function trashed(Post $posts){
-        
-        if(auth()->user()->isAdmin()){
-
+    public function trashed(Post $posts)
+    {
+        if (auth()->user()->isAdmin()) 
+        {
             $trashed = Post::onlyTrashed()->get();
             return view('posts.index')->with('posts', $trashed);
-        }
-        else{            
+        } else 
+        {
             $trashed = Post::onlyTrashed()->where('user_id', '=', auth()->user()->id)->get();
             return view('posts.index')->with('posts', $trashed);
         }
-        
     }
 
-     /**
-     * Restore the post that is trashed
-    
-     * @return \Illuminate\Http\Response
-     */
+    /**
+    * Restore the post that is trashed
 
-    public function restore($id){
+    * @return \Illuminate\Http\Response
+    */
 
+    public function restore($id)
+    {
         $post = Post::withTrashed()->where('id', $id)->firstOrFail();
         $post->restore();
         session()->flash('message', 'Post restored successfully.');

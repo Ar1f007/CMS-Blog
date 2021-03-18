@@ -100,16 +100,17 @@ class tagsController extends Controller
     {
 
         //number of posts greater than 0
-        if($tag->posts->count() > 0){
-
+        if($tag->posts->count() > 0)
+        {
             $totalPosts = $tag->posts->count();
             $tagName = $tag->name;
 
-            if($totalPosts == 1){
+            if($totalPosts == 1)
+            {
                 return back()->with('error', 'The tag "'. $tagName. '" cannot be deleted because it is currently attached with ' .$totalPosts. ' post.');
-
             }
-            else{
+            else
+            {
                 return back()->with('error', 'The tag "'. $tagName. '" cannot be deleted because it is currently attached with ' .$totalPosts. ' posts.');
             }
 
