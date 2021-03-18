@@ -51,6 +51,9 @@
                 <div class="col-lg-10 mx-auto">
                     {!! $post->content !!}
                 </div>
+                <div class="col-lg-10 mx-auto">
+                    <p>Total views: {{ $views }} </p>
+                </div>
             </div>
 
             <div class="row">

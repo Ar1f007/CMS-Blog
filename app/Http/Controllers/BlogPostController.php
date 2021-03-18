@@ -11,7 +11,8 @@ class BlogPostController extends Controller
 {
     public function displayPost(Post $post)
     {
-        return view('blog.show')->with('post', $post);   
+        $viewCount= views($post)->record();
+        return view('blog.show')->with('post', $post)->with('views', $viewCount);   
     }
 
     public function categoryPostIndex(Category $category)

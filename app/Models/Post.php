@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
 
-class Post extends Model
+class Post extends Model implements Viewable
 {
     use HasFactory;
     use SoftDeletes;
-    
+    use InteractsWithViews;
     protected $dates = ['published_at'];
 
     protected $fillable = ['title', 'user_id', 'content', 'image', 'published_at', 'category_id'];
