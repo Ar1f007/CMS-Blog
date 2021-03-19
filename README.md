@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="{{ asset('img/logo.png') }}"  width="85px" height="15px">Blogosphere
+    Blogosphere
 </p>
 
 ## Overview
