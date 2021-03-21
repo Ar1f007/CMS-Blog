@@ -46,6 +46,10 @@
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Category
                                                 </th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Total View / Unique
+                                                </th>
                                                 <th scope="col" class="relative px-6 py-3">
                                                     <span class="sr-only">Edit</span>
                                                 </th>
@@ -66,6 +70,9 @@
                                                 </td>
                                                 <td class="px-7 py-4 whitespace-nowrap text-sm text-gray-500">
                                                     {{ $post->category->name }}
+                                                </td>
+                                                <td class="px-7 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    {{ views($post)->count() }} / {{ views($post)->unique()->count() }}
                                                 </td>
                                                 <td class=" px-6 py-4 whitespace-nowrap text-right text-sm
                                                         font-medium">

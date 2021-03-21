@@ -10,9 +10,8 @@ use App\Models\Tag;
 class BlogPostController extends Controller
 {
     public function displayPost(Post $post)
-    {
-        $viewCount= views($post)->record();
-        return view('blog.show')->with('post', $post)->with('views', $viewCount);   
+    {   views($post)->record();
+        return view('blog.show')->with('post', $post);   
     }
 
     public function categoryPostIndex(Category $category)

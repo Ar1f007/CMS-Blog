@@ -52,7 +52,7 @@
                     {!! $post->content !!}
                 </div>
                 <div class="col-lg-10 mx-auto">
-                    <p>Total views: {{ $views }} </p>
+                    <p>Total views: {{ views($post)->count() }} </p>
                 </div>
             </div>
 
