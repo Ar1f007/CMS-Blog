@@ -27,10 +27,10 @@ class PostsController extends Controller
     {
         if (auth()->user()->isAdmin()) 
         {
-            return view('posts.index')->with('posts', Post::paginate(10));
+            return view('posts.index')->with('posts', Post::latest('id')->paginate(10));
         } else 
         {
-            $posts = Post::where('user_id', '=', auth()->user()->id)->paginate(10);
+            $posts = Post::where('user_id', '=', auth()->user()->id)->latest('id')->paginate(10);
             return view('posts.index')->with('posts', $posts);
         }
     }
@@ -178,11 +178,11 @@ class PostsController extends Controller
     {
         if (auth()->user()->isAdmin()) 
         {
-            $trashed = Post::onlyTrashed()->paginate(10);
+            $trashed = Post::onlyTrashed()->latest('id')->paginate(10);
             return view('posts.index')->with('posts', $trashed);
         } else 
         {
-            $trashed = Post::onlyTrashed()->where('user_id', '=', auth()->user()->id)->paginate(10);
+            $trashed = Post::onlyTrashed()->where('user_id', '=', auth()->user()->id)->latest('id')->paginate(10);
             return view('posts.index')->with('posts', $trashed);
         }
     }

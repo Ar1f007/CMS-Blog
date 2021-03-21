@@ -13,7 +13,7 @@ class WelcomeController extends Controller
     public function index()
     {
         return view('welcome')
-        ->with('posts', Post::searched()->latest('id')->simplePaginate(4))
+        ->with('posts', Post::searched()->latest('id')->simplePaginate(6))
         ->with('categories', Category::all())
         ->with('tags', Tag::all());
     }
