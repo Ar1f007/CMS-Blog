@@ -42,6 +42,8 @@ Route::middleware(['auth'])->group(function ()
 Route::middleware(['auth', 'admin'])->group(function(){
     Route::get('users', [UsersController::class, 'index'])->name('users.index');
     Route::post('users/{user}/make-admin', [UsersController::class, 'makeAdmin'])->name('users.make-admin');
+    Route::get('user/{userId}/posts', [UsersController::class, 'view'])->name('user.posts');
+    Route::get('{admin}/my-posts', [UsersController::class, 'adminsPost'])->name('admin-post.index');
 });
 
 require __DIR__.'/auth.php';

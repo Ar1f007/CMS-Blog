@@ -42,7 +42,7 @@
                                                         style="border-radius: 50%; width: 50px;">
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    {{ $user->name }}
+                                                    <a href="{{route('user.posts', $user->id)}}">{{ $user->name }}</a>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                     {{ $user->email }}

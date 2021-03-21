@@ -101,21 +101,21 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{-- <div class="mt-4">
-                                    {{ $categories->links() }}
-                            </div> --}}
+                                <div class="mt-4">
+                                    {{ $posts->links() }}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            @else
-            <div class="p-6 bg-white border-b border-gray-200 text-center">
-                No Posts Yet!
+                @else
+                <div class="p-6 bg-white border-b border-gray-200 text-center">
+                    No Posts Yet!
+                </div>
+                @endif
             </div>
-            @endif
         </div>
-    </div>
     </div>
 
 </x-app-layout>

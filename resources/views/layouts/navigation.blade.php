@@ -30,6 +30,10 @@
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                         {{ __('Users') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('admin-post.index', auth()->user()->id)"
+                        :active="request()->routeIs('admin-post.index')">
+                        {{ __('My Posts') }}
+                    </x-nav-link>
                     @endif
 
                 </div>
@@ -106,6 +110,10 @@
             @if (auth()->user()->isAdmin())
             <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                 {{ __('Users') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin-post.index', auth()->user()->id)"
+                :active="request()->routeIs('admin-post.index')">
+                {{ __('My posts') }}
             </x-responsive-nav-link>
             @endif
         </div>
