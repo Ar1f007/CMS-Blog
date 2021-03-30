@@ -19,3 +19,6 @@ A platform which assists content creators produce content in an easily consumabl
 -   Post search, search by category/within category, by tag/within tag.
 -   post commenting system.
 -   Reader can share the post to social media etc.
+
+## Features
+Laravel
