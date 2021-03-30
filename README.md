@@ -20,5 +20,5 @@ A platform which assists content creators produce content in an easily consumabl
 -   post commenting system.
 -   Reader can share the post to social media etc.
 
-## Features
+## Framework
 Laravel
